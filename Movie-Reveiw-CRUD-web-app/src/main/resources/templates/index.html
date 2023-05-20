@@ -1,0 +1,40 @@
+c<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Horror Movie List</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container my-2">
+	<h1>Horror Movie List</h1>
+	
+	<a th:href = "@{/showNewMovieForm}" class="btn btn-success btn-sm mb-3">Add Movie</a>
+		<table border="1" class = "table table-stiped table-responsive-md">
+			<thead>
+				<tr>
+					<th> Movie Title</th>
+					<th> Movie Director</th>
+					<th> Release Year</th>
+					<th> Movie Rating</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="movie : ${listMovies}">
+					<td th:text="${movie.title}"></td>
+					<td th:text="${movie.director}"></td>
+					<td th:text="${movie.year}"></td>
+					<td th:text="${movie.rating}"></td>
+					<td> <a th:href="@{/showFormForUpdate/{id}(id=${movie.id})}" class="btn btn-success">Update</a> 
+						<a th:href="@{/deleteMovie/{id}(id=${movie.id})}" class="btn btn-warning">Delete</a>					
+					</td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
