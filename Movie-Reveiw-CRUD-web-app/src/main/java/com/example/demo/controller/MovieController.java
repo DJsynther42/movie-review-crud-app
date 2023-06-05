@@ -18,7 +18,6 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 	
-	// display list of movies
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		model.addAttribute("listMovies", movieService.getAllMovies());
@@ -27,7 +26,6 @@ public class MovieController {
 	
 	@GetMapping("/showNewMovieForm")
 	public String showNewMovieForm(Model model) {
-		// create model attribute to bind form data
 		Movie movie = new Movie();
 		model.addAttribute("movie", movie);
 		return "new_movie";
@@ -35,7 +33,6 @@ public class MovieController {
 	
 	@PostMapping("/saveMovie")
 	public String saveMovie(@ModelAttribute("movie") Movie movie) {
-		// save movie to database
 		movieService.saveMovie(movie);
 		return "redirect:/";
 	}
@@ -43,10 +40,8 @@ public class MovieController {
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
 		
-		// get movie from the service 
 		Movie movie = movieService.getMovieById(id);
 		
-		// set movie as a model attribute to pre-populate the form
 		model.addAttribute("movie", movie);
 		return "update_movie";
 		
@@ -55,7 +50,6 @@ public class MovieController {
 	@GetMapping("/deleteMovie/{id}")
 	public String deleteMovie(@PathVariable (value = "id") long id) {
 		
-		// call delete movie method		
 		this.movieService.deleteMovieById(id);
 		return "redirect:/";
 	}
