@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * This Movie class lists the columns for each item row.
+ */
 @Entity
 @Table(name = "Movies")
 public class Movie {
